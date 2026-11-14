@@ -37,4 +37,12 @@ async function connectDB() {
   return cached.conn;
 }
 
+mongoose.connection.on("disconnected", () => {
+  console.log("⚠️ MongoDB disconnected");
+});
+
+mongoose.connection.on("reconnected", () => {
+  console.log("♻️ MongoDB reconnected");
+});
+
 export default connectDB;
